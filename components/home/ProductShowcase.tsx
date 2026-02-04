@@ -36,11 +36,11 @@ export default function ProductShowcase() {
         });
         showNotification('Product added to cart!');
 
-        // Optional: Auto-open cart after 800ms
-        // setTimeout(() => {
-        //     const cartButton = document.querySelector('[data-cart-button]');
-        //     if (cartButton) (cartButton as HTMLElement).click();
-        // }, 800);
+        // Auto-open cart after 500ms
+        setTimeout(() => {
+            const cartButton = document.querySelector('[data-cart-button]') as HTMLElement;
+            if (cartButton) cartButton.click();
+        }, 500);
     };
 
     const showNotification = (message: string) => {

@@ -124,7 +124,9 @@ export default function Navbar() {
 
                         {/* Cart and Mobile Menu Button */}
                         <div className="flex items-center space-x-4">
-                            <CartButton onClick={() => setIsCartOpen(true)} />
+                            <div data-cart-button>
+                                <CartButton onClick={() => setIsCartOpen(true)} />
+                            </div>
                             <button
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                                 className="md:hidden text-2xl text-text-dark"
