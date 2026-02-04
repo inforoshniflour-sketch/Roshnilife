@@ -72,7 +72,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                         ) : (
                             <p className="text-sm font-semibold text-green-600 flex items-center gap-2">
                                 <i className="fas fa-check-circle"></i>
-                                Congratulations! You've unlocked free shipping!
+                                Congratulations! You&apos;ve unlocked free shipping!
                             </p>
                         )}
                     </div>

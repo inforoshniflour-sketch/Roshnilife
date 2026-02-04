@@ -16,7 +16,7 @@ export default function CartButton({ onClick }: { onClick: () => void }) {
             setTimeout(() => setBounce(false), 600);
         }
         setPrevTotal(totalItems);
-    }, [totalItems]);
+    }, [totalItems, prevTotal]);
 
     return (
         <button
