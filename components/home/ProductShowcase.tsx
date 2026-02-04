@@ -34,12 +34,18 @@ export default function ProductShowcase() {
             image: '/images/product-front.png',
             quantity,
         });
-        showNotification('Added to cart!');
+        showNotification('Product added to cart!');
+
+        // Optional: Auto-open cart after 800ms
+        // setTimeout(() => {
+        //     const cartButton = document.querySelector('[data-cart-button]');
+        //     if (cartButton) (cartButton as HTMLElement).click();
+        // }, 800);
     };
 
     const showNotification = (message: string) => {
         setNotification(message);
-        setTimeout(() => setNotification(''), 3000);
+        setTimeout(() => setNotification(''), 3500);
     };
 
     return (
@@ -77,8 +83,8 @@ export default function ProductShowcase() {
                                     key={index}
                                     onClick={() => setCurrentImageIndex(index)}
                                     className={`relative w-24 h-24 rounded-xl overflow-hidden border-3 transition-all ${currentImageIndex === index
-                                            ? 'border-primary opacity-100 -translate-y-1'
-                                            : 'border-transparent opacity-60 hover:opacity-100'
+                                        ? 'border-primary opacity-100 -translate-y-1'
+                                        : 'border-transparent opacity-60 hover:opacity-100'
                                         }`}
                                 >
                                     <Image src={img} alt={`View ${index + 1}`} fill className="object-cover" />
@@ -187,10 +193,29 @@ export default function ProductShowcase() {
                 </div>
             </div>
 
-            {/* Notification */}
+            {/* Enhanced Toast Notification */}
             {notification && (
-                <div className="fixed top-24 right-4 bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full shadow-lg z-50 animate-[slideInRight_0.3s_ease]">
-                    {notification}
+                <div className="fixed top-24 right-4 z-50 animate-[slideInRight_0.3s_ease]">
+                    <div className="bg-white border-l-4 border-green-500 shadow-2xl rounded-lg p-4 flex items-center gap-3 min-w-[300px]">
+                        {/* Success Icon */}
+                        <div className="flex-shrink-0 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center animate-[scaleIn_0.3s_ease]">
+                            <i className="fas fa-check text-white text-lg"></i>
+                        </div>
+
+                        {/* Message */}
+                        <div className="flex-1">
+                            <p className="font-semibold text-gray-800">{notification}</p>
+                            <p className="text-sm text-gray-600">View cart to checkout</p>
+                        </div>
+
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setNotification('')}
+                            className="flex-shrink-0 text-gray-400 hover:text-gray-600 transition-colors"
+                        >
+                            <i className="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
             )}
         </section>
