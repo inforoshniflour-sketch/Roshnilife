@@ -134,8 +134,8 @@ export default function CheckoutPage() {
             // Send email notification (will implement with EmailJS)
             // await sendEmailNotification(orderData);
 
-            // Clear cart
-            clearCart();
+            // Clear cart moved to confirmation page
+            // clearCart();
 
             // Redirect to confirmation page
             router.push(`/order-confirmation/${orderNumber}`);

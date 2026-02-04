@@ -1,13 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { formatPrice } from '@/lib/orderUtils';
+import { useCart } from '@/components/cart/CartContext';
 
 export default function OrderConfirmationPage() {
     const params = useParams();
     const router = useRouter();
+    const { clearCart } = useCart();
     const orderNumber = params.orderId as string;
     const [orderData, setOrderData] = useState<any>(null);
 
@@ -18,13 +16,14 @@ export default function OrderConfirmationPage() {
 
         if (order) {
             setOrderData(order);
+            clearCart(); // Clear cart now that order is confirmed
             // Send email notification
             sendEmailNotification(order);
         } else {
             // Order not found, redirect to home
             router.push('/');
         }
-    }, [orderNumber, router]);
+    }, [orderNumber, router, clearCart]);
 
     const sendEmailNotification = async (order: any) => {
         // This will be implemented with EmailJS
